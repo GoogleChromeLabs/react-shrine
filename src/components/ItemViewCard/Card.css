@@ -1,0 +1,15 @@
+.item-view-card-wrapper {
+  padding: 10px;
+}
+.item-view-card-wrapper .card {
+  padding: 20px 10px;
+}
+
+.item-view-card-wrapper .card:hover {
+  transition: all ease 0.5s;
+  box-shadow: 0 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.item-view-card-wrapper .card img {
+  width: 80%;
+}
