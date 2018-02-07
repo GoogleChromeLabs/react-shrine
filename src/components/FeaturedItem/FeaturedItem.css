@@ -1,0 +1,124 @@
+.featured-item {
+  display: block;
+  background-color: #FFFFFF;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.featured-item .price {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #fee0e0;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.feature-image-wrapper img {
+  width: 100%;
+}
+
+.featured-item-content {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 40em;
+  max-width: 60%;
+}
+
+.featured-item-content .feature-heading {
+  margin: 60px 0px;
+  color: #0A3142;
+  font-size: 6em;
+  line-height: 1.1em;
+}
+
+.feature-description-wrapper {
+  padding-top: 5px;
+  max-width: 300px;
+  float: right;
+  position: relative;
+}
+
+.feature-description-wrapper:before {
+  background-color: #31f0ef;
+  content: "";
+  height: 6px;
+  left: 0;
+  line-height: 21px;
+  position: absolute;
+  top: -6px;
+  width: 100px;
+}
+
+.feature-description-wrapper .description {
+  padding-bottom: 20px;
+  font-size: 14px;
+  font-weight: 300;
+}
+.feature-description-wrapper .author {
+  font-size: 11px;
+  line-height: 30px;
+  color: #999;
+}
+.feature-description-wrapper .author img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  border: 2px solid #FFFFFF;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1280px) {
+  .featured-item-content .feature-heading {
+    font-size: 4em;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .featured-item .featured-item-content {
+    position: relative;
+    width: 58%;
+    right: 0;
+  }
+}
+
+
+@media screen and (min-width: 400px) and (max-width: 960px) {
+  .featured-item-content .feature-heading {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .featured-item {
+    height: auto;
+    padding: 30px 8px;
+  }
+  .featured-item .price {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+  }
+  .featured-item-content .feature-heading {
+    font-size: 2em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .feature-description-wrapper:before {
+    height: 3px;
+    top: -3px;
+  }
+  .feature-description-wrapper .description {
+    font-size: 11px;
+    padding-bottom: 10px;
+  }
+}
