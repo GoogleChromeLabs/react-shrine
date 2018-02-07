@@ -1,0 +1,167 @@
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ .item-view-wrapper {
+  background-color: #F3F3F3;
+  min-height: 100%;
+}
+
+.item-view-wrapper, .item-view-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.item-view-content .grid {
+  height: 100%;
+}
+
+.item-view-wrapper .logo .small {
+  display: none;
+}
+
+.item-view-wrapper .content {
+  height: calc(100% - 60px);
+  overflow-y: auto;
+}
+
+.item-view-wrapper .item-list {
+  background-color: #f3f3f3;
+}
+
+.item-view-wrapper .item-list > div {
+  justify-content: left;
+}
+
+.item-view-wrapper .item-display {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+.item-view-wrapper .item-display .image-container {
+  width: 180px;
+  position: relative;
+  float: left;
+  padding: 10px;
+}
+
+.item-view-wrapper .item-display .image-container>img {
+  width: 100%;
+}
+
+.item-view-wrapper .item-display .image-container>.info-outline {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: rgba(255, 223, 223, 1);
+}
+
+.item-view-wrapper .item-display .item-details-wrapper {
+  width: 400px;
+  padding: 0px 15px;
+  float: left;
+  box-sizing: border-box;
+}
+
+.item-view-wrapper .item-display .item-details-wrapper .heading {
+  font-size: 2.5em;
+  margin: 27px 0px;
+  text-align: center;
+}
+
+.item-view-wrapper .description {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #333;
+  margin: 13px 0px;
+}
+
+.item-view-wrapper .item-display .add-cart {
+  margin: 20px 0px 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #EEEEEE;
+  display: flex;
+  align-items: center;
+}
+
+.item-view-wrapper .item-display .add-cart .selectbox {
+  width: 50%;
+  border: 1px solid #EEEEEE;
+  padding: 5px;
+}
+.item-view-wrapper .item-display .add-cart .button {
+  margin-left: 15px;
+}
+
+.item-view-wrapper .store-description .store-heading {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 13px 0px;
+}
+
+@media screen and (max-width: 1200px) {
+  .item-view-wrapper {
+    overflow: auto;
+    height: auto;
+  }
+
+  .item-view-wrapper .logo .large {
+    display: none;
+  }
+
+  .item-view-wrapper .logo .small {
+    display: block;
+    margin: auto;
+  }
+
+  .item-view-content {
+    overflow: hidden;
+  }
+
+  .item-view-content .grid {
+    flex-direction: column-reverse;
+  }
+
+  .item-view-wrapper .item-list > div {
+    justify-content: center;
+  }
+
+  .item-view-wrapper .item-display {
+    padding: 40px 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .item-view-wrapper .item-display .add-cart {
+    justify-content: center;
+  }
+
+  .item-view-wrapper .menu-button {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .item-view-wrapper .item-display .item-details-wrapper {
+    width: 100%;
+  }
+
+  .item-view-wrapper .item-display .image-container {
+    width: 60%;
+    margin: 0% 20%;
+  }
+}
