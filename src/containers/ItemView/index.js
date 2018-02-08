@@ -117,7 +117,7 @@ class ItemView extends Component {
             <Grid item md={12} lg={8} className="content item-display">
               <div>
                 <div className="image-container">
-                  <img src={viewedItem.imageUrl} alt={viewedItem.title} />
+                  <img src={'../' + viewedItem.imageUrl} alt={viewedItem.title} />
                   <IconButton className="info-outline" color="inherit" aria-label="Menu">
                     <InfoOutline />
                   </IconButton>
