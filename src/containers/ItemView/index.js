@@ -12,6 +12,8 @@
  */
 
  import React, { Component } from 'react';
+import Logo from '../../logo.svg';
+import LogoWithIcon from '../../logo-with-icon.svg';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui-icons/ArrowBack';
@@ -91,8 +93,8 @@ class ItemView extends Component {
             <ArrowBack />
           </IconButton>
           <div className={`${classes.logo} logo`}>
-            <img src="http://app-layout-assets.appspot.com/assets/shrine/shrine_logo_withicon.svg" alt="logo" className="large" />
-            <img src="https://app-layout-assets.appspot.com/assets/shrine/shrine_logo.svg" alt="logo" className="small" />
+            <img src={LogoWithIcon} alt="logo" className="large" />
+            <img src={Logo} alt="logo" className="small" />
           </div>
           <div>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
