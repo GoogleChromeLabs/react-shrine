@@ -47,6 +47,18 @@
         "storeDescription": "Trevor Hanson sources housewares and styles from just about everywhere. Super cool and extra awesome all of his shop’s goods are handmade with love.",
         "featured": false
       },
+      {
+
+        "id": 12,
+        "title": "Beachball",
+        "description": "Are you at a baseball game and feeling bored? At a pool party and looking for a laugh? Do you need something to take your anger out on? Beachball, by inflatable fun, is the perfect outlet.",
+        "imageUrl": "../images/beachball.png",
+        "price": "$25",
+        "storeName": "Peter’s shop",
+        "storeAvatarUrl": "../images/peter-carlsson.png",
+        "storeDescription": "Peter makes great stuff for awesome people like you.  Super cool and extra awesome all of his shop’s goods are handmade with love. Custom orders are available upon request if you need something extra special.",
+        "featured": false
+      }
     ],
   },
   {
