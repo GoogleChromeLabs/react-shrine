@@ -20,7 +20,7 @@
       "quote": "Leave the tunnel and the rain is fallin amazing things happen when you wait",
       "imageUrl": "../images/chair.png",
       "storeName": "Ali’s shop",
-      "storeAvatarUrl": "../images/ali-connors.png",
+      "storeAvatarUrl": "../images/ali-connors.jpg",
       "price": "$300",
     },
     items: [
@@ -55,7 +55,7 @@
         "imageUrl": "../images/beachball.png",
         "price": "$25",
         "storeName": "Peter’s shop",
-        "storeAvatarUrl": "../images/peter-carlsson.png",
+        "storeAvatarUrl": "../images/peter-carlsson.jpg",
         "storeDescription": "Peter makes great stuff for awesome people like you.  Super cool and extra awesome all of his shop’s goods are handmade with love. Custom orders are available upon request if you need something extra special.",
         "featured": false
       }
@@ -207,7 +207,7 @@
       "quote": "Leave the tunnel and the rain is fallin amazing things happen when you wait",
       "imageUrl": "../images/heels.png",
       "storeName": "Peter’s shop",
-      "storeAvatarUrl": "../images/peter-carlsson.png",
+      "storeAvatarUrl": "../images/peter-carlsson.jpg",
       "price": "$300",
     },
     items: [
