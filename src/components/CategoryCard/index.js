@@ -13,8 +13,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 import AbrilText from '../AbrilText';
 import './Card.css';

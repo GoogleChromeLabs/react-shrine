@@ -12,9 +12,9 @@
  */
 
 import React from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 import './Card.css';
 

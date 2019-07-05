@@ -11,21 +11,21 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
+import React, { Component } from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fab from '@material-ui/core/Fab';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MoreVertical from '@material-ui/icons/MoreVert';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
+
 import Logo from '../../logo.svg';
 import LogoWithIcon from '../../logo-with-icon.svg';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import ArrowBack from 'material-ui-icons/ArrowBack';
-import ShoppingCart from 'material-ui-icons/ShoppingCart';
-import MoreVertical from 'material-ui-icons/MoreVert';
-import InfoOutline from 'material-ui-icons/InfoOutline';
-import Grid from 'material-ui/Grid';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
-
 import landingData from '../../containers/Landing/LandingData';
 import ItemViewCard from '../../components/ItemViewCard';
 import AbrilText from '../../components/AbrilText';
@@ -34,12 +34,12 @@ import './ItemView.css';
 const styles = {
   toolbar: {
     backgroundColor: '#FFFFFF',
-    borderBottom: '1px solid #EEEEEE',
+    borderBottom: '1px solid #EEEEEE'
   },
   logo: {
     flex: 1,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 };
 
 class ItemView extends Component {
@@ -50,6 +50,14 @@ class ItemView extends Component {
       viewedItem: {},
       quantity: 1,
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setItemDetails(nextProps.match.params.category, nextProps.match.params.id);
+  }
+
+  componentWillMount() {
+    this.setItemDetails(this.props.match.params.category, this.props.match.params.id);
   }
 
   findItemByCategory = (category) => {
@@ -72,14 +80,6 @@ class ItemView extends Component {
 
   handleQuantityChange = (event) => {
     this.setState({ quantity: event.target.value})
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setItemDetails(nextProps.match.params.category, nextProps.match.params.id);
-  }
-
-  componentWillMount() {
-    this.setItemDetails(this.props.match.params.category, this.props.match.params.id);
   }
 
   render() {
@@ -121,7 +121,7 @@ class ItemView extends Component {
                 <div className="image-container">
                   <img src={'../' + viewedItem.imageUrl} alt={viewedItem.title} />
                   <IconButton className="info-outline" color="inherit" aria-label="Menu">
-                    <InfoOutline />
+                    <ErrorOutline />
                   </IconButton>
                 </div>
                 <div className="item-details-wrapper">
@@ -133,17 +133,16 @@ class ItemView extends Component {
                       onChange={this.handleQuantityChange}
                       className="selectbox"
                       margin="none"
-                      disableUnderline
-                    >
+                      disableUnderline>
                       <MenuItem value={1}>Quantity 1</MenuItem>
                       <MenuItem value={2}>Quantity 2</MenuItem>
                       <MenuItem value={3}>Quantity 3</MenuItem>
                       <MenuItem value={4}>Quantity 4</MenuItem>
                       <MenuItem value={5}>Quantity 5</MenuItem>
                     </Select>
-                    <Button fab mini color="primary" aria-label="add" className="button">
+                    <Fab size="small" color="primary" aria-label="shopping-cart" className="button">
                       <ShoppingCart />
-                    </Button>
+                    </Fab>
                   </div>
                   <div className="store-description">
                     <div className="store-heading">{viewedItem.storeName}</div>

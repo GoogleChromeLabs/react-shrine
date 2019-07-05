@@ -11,8 +11,9 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, withRouter } from 'react-router-dom';
+import quicklink from 'quicklink/dist/quicklink.mjs';
 import asyncComponent from './components/AsyncComponent';
 import './App.css';
 
@@ -20,6 +21,23 @@ const AsyncLanding = asyncComponent(() => import('./containers/Landing'));
 const AsyncItemView = asyncComponent(() => import('./containers/ItemView'));
 
 class App extends Component {
+  // when app is mounted for the first time
+  componentDidMount() {
+    this.quicklinkHandler();
+  }
+
+  // when app is rerendered after mounted
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.quicklinkHandler();
+    }
+  }
+
+  quicklinkHandler = () => {
+    console.log('ray : quicklink call');
+    quicklink();
+  };
+
   render() {
     return (
       <div className="app-wrapper">
@@ -31,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
