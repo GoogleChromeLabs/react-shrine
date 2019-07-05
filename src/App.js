@@ -11,14 +11,34 @@
  * limitations under the License.
  */
 
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import quicklink from 'quicklink/dist/quicklink.mjs';
-import asyncComponent from './components/AsyncComponent';
+
 import './App.css';
 
-const AsyncLanding = asyncComponent(() => import('./containers/Landing'));
-const AsyncItemView = asyncComponent(() => import('./containers/ItemView'));
+const LazyLanding = lazy(() => import('./containers/Landing'));
+const LazyItemView = lazy(() => import('./containers/ItemView'));
+// ray test touch <
+const LazyAdaptiveItemView = lazy(() => {
+  return new Promise(resolve => {
+    navigator.connection ? resolve(navigator.connection.effectiveType) : resolve(null);
+  }).then(
+    effectiveType => {
+      console.log('ray : ***** effectiveType => ', effectiveType);
+      switch(effectiveType) {
+        case '4g': 
+          return import('./components/ItemViewZoom');
+        case '3g':
+        case '2g':
+          return import('./components/ItemViewStatic');
+        default:
+          return import('./components/ItemViewStatic')
+      }
+    }
+  );
+});
+// ray test touch >
 
 class App extends Component {
   // when app is mounted for the first time
@@ -41,9 +61,14 @@ class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
-        <Route exact path="/" component={AsyncLanding} />
-        <Route exact path="/category/:category" component={AsyncLanding} />
-        <Route exact path="/category/:category/:id" component={AsyncItemView} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Route exact path="/" component={LazyLanding} />
+          <Route exact path="/category/:category" component={LazyLanding} />
+          <Route exact path="/category/:category/:id" component={LazyItemView} />
+          {/* ray test touch < */}
+          <Route exact path="/category/:category/:id/zoom" component={LazyAdaptiveItemView} />
+          {/* ray test touch > */}
+        </Suspense>
       </div>
     );
   }

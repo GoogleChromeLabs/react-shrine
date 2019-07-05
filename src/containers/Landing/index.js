@@ -78,13 +78,13 @@ class LandingPage extends Component {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.setCurrentSelectedItem(nextProps.match.params.category);
     }
-  };
+  }
 
   componentWillMount() {
     if (this.props.match.params.category) {
       this.setCurrentSelectedItem(this.props.match.params.category);
     }
-  };
+  }
 
   findItemByCategory = (category) => {
     const filteredCategory = landingData.filter((item) => item.category.toLowerCase() === category)

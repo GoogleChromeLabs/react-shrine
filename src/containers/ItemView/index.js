@@ -108,6 +108,7 @@ class ItemView extends Component {
         <div className="item-view-content">
           <Grid container spacing={0} className="grid">
             <Grid item md={12} lg={4} className="content item-list">
+              {/* ray test touch < */}
               <Grid container spacing={0}>
                 {
                   this.state.selectedCategory.items.map((item) => (
@@ -115,6 +116,7 @@ class ItemView extends Component {
                   ))
                 }
               </Grid>
+              {/* ray test touch > */}
             </Grid>
             <Grid item md={12} lg={8} className="content item-display">
               <div>
