@@ -1,12 +1,15 @@
 
-// ray test touch <
 import React from 'react';
 
-const ItemViewStatic = () => {
+import { getDetailedProduct } from '../../utils/utility';
+
+const ItemViewStatic = ({ match }) => {
+  const categoryName = match.params.category;
+  const productId = match.params.id;
+  const detailedProduct = getDetailedProduct(categoryName, productId);
   return (
-    <div>ItemViewStatic</div>
+    <img src={detailedProduct.imageUrl} width={500} alt="product" />
   );
 };
 
 export default ItemViewStatic;
-// ray test touch >

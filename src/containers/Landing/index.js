@@ -28,9 +28,10 @@ import MoreVertical from '@material-ui/icons/MoreVert';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import CategoryView from '../../containers/CategoryView';
+import { products } from '../../utils/links';
+import { getCategoryGroupByName, getCategoryGroupById } from '../../utils/utility';
 import Logo from '../../logo.svg';
 import LogoWithIcon from '../../logo-with-icon.svg';
-import landingData from './LandingData';
 import './Landing.css';
 
 const styles = {
@@ -68,8 +69,8 @@ class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: landingData[0],
-      value: landingData[0].id,
+      selectedItem: products[0],
+      value: products[0].id,
       drawerOpen: false
     }
   }
@@ -86,29 +87,19 @@ class LandingPage extends Component {
     }
   }
 
-  findItemByCategory = (category) => {
-    const filteredCategory = landingData.filter((item) => item.category.toLowerCase() === category)
-    return filteredCategory ? filteredCategory[0] : null
-  };
-
-  findItemByValue = (value) => {
-    const item = landingData.filter((item) => item.id === value)[0];
-    return item;
-  };
-
   setCurrentSelectedItem = (category) => {
-    const selectedCategory = this.findItemByCategory(category);
+    const selectedCategory = getCategoryGroupByName(category);
     this.setState(() => {
       return {
-        selectedItem: selectedCategory || landingData[0],
-        value: selectedCategory ? selectedCategory.id : landingData[0].id,
+        selectedItem: selectedCategory || products[0],
+        value: selectedCategory ? selectedCategory.id : products[0].id,
       }
     })
   };
 
   handleChange = (event, value) => {
     const { history } = this.props;
-    const selectedItem = this.findItemByValue(value);
+    const selectedItem = getCategoryGroupById(value);
     history.push(`/category/${selectedItem.category.toLowerCase()}`);
     this.setState(previousState => {
       return {
@@ -151,14 +142,12 @@ class LandingPage extends Component {
           onChange={this.handleChange}
           className={`${classes.flex} ${classes.white} navigation-toolbar`}
           scrollButtons="auto">
-          {
-            landingData.map((item) => (
-              <Tab
-                key={item.id}
-                label={item.category}
-                value={item.id} />
-            ))
-          }
+          { products.map(item => (
+            <Tab
+              key={item.id}
+              label={item.category}
+              value={item.id} />
+          )) }
         </Tabs>
         <Drawer open={this.state.drawerOpen} onClose={() => this.toggleDrawer(false)} className={classes.listBackground}>
           <div
@@ -168,8 +157,7 @@ class LandingPage extends Component {
             onClick={() => this.toggleDrawer(false)}
             onKeyDown={() => this.toggleDrawer(false)}>
             <List>
-              {
-                landingData.map((item, index) => (
+              { products.map((item, index) => (
                   <ListItem
                     button
                     key={index}>
@@ -177,8 +165,7 @@ class LandingPage extends Component {
                       <ListItemText primary={item.category} />
                     </Link>
                   </ListItem>
-                ))
-              }
+              )) }
             </List>
           </div>
         </Drawer>

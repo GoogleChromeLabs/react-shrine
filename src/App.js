@@ -19,17 +19,16 @@ import './App.css';
 
 const LazyLanding = lazy(() => import('./containers/Landing'));
 const LazyItemView = lazy(() => import('./containers/ItemView'));
-// ray test touch <
 const LazyAdaptiveItemView = lazy(() => {
   return new Promise(resolve => {
     navigator.connection ? resolve(navigator.connection.effectiveType) : resolve(null);
   }).then(
     effectiveType => {
-      console.log('ray : ***** effectiveType => ', effectiveType);
+      console.log('[LazyAdaptiveItemView] effectiveType => ', effectiveType);
       switch(effectiveType) {
-        case '4g': 
-          return import('./components/ItemViewZoom');
+        case '4g':
         case '3g':
+          return import('./components/ItemViewZoom');
         case '2g':
           return import('./components/ItemViewStatic');
         default:
@@ -38,7 +37,6 @@ const LazyAdaptiveItemView = lazy(() => {
     }
   );
 });
-// ray test touch >
 
 class App extends Component {
   // when app is mounted for the first time
@@ -54,7 +52,7 @@ class App extends Component {
   }
 
   quicklinkHandler = () => {
-    console.log('ray : quicklink call');
+    console.log('[App quicklinkHandler] quicklink call');
     quicklink();
   };
 
@@ -65,9 +63,7 @@ class App extends Component {
           <Route exact path="/" component={LazyLanding} />
           <Route exact path="/category/:category" component={LazyLanding} />
           <Route exact path="/category/:category/:id" component={LazyItemView} />
-          {/* ray test touch < */}
           <Route exact path="/category/:category/:id/zoom" component={LazyAdaptiveItemView} />
-          {/* ray test touch > */}
         </Suspense>
       </div>
     );

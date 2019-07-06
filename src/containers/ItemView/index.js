@@ -12,6 +12,7 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,11 +25,11 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MoreVertical from '@material-ui/icons/MoreVert';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
-import Logo from '../../logo.svg';
-import LogoWithIcon from '../../logo-with-icon.svg';
-import landingData from '../../containers/Landing/LandingData';
 import ItemViewCard from '../../components/ItemViewCard';
 import AbrilText from '../../components/AbrilText';
+import { getCategoryGroupByName, getDetailedProduct } from '../../utils/utility';
+import Logo from '../../logo.svg';
+import LogoWithIcon from '../../logo-with-icon.svg';
 import './ItemView.css';
 
 const styles = {
@@ -48,7 +49,7 @@ class ItemView extends Component {
     this.state = {
       selectedCategory: {},
       viewedItem: {},
-      quantity: 1,
+      quantity: 1
     }
   }
 
@@ -60,32 +61,23 @@ class ItemView extends Component {
     this.setItemDetails(this.props.match.params.category, this.props.match.params.id);
   }
 
-  findItemByCategory = (category) => {
-    return landingData.filter((item) => item.category.toLowerCase() === category)
-  }
-
-  findCurrentViewedItem = (currentCategory, id) => {
-    return currentCategory.items.find((item) => item.id.toString() === id)
-  }
-
   setItemDetails = (category, id) => {
-    const selectedCategory = this.findItemByCategory(category)[0];
+    const selectedCategory = getCategoryGroupByName(category);
     this.setState((previousState) => {
       return {
         selectedCategory: selectedCategory,
-        viewedItem: this.findCurrentViewedItem(selectedCategory, id),
+        viewedItem: getDetailedProduct(category, id)
       }
     });
-  }
+  };
 
   handleQuantityChange = (event) => {
-    this.setState({ quantity: event.target.value})
-  }
+    this.setState({quantity: event.target.value});
+  };
 
   render() {
     const { classes, history } = this.props;
-    const { viewedItem } = this.state;
-    console.log(this.props);
+    const { viewedItem, selectedCategory, quantity } = this.state;
     return (
       <div className="item-view-wrapper">
         <Toolbar className={classes.toolbar}>
@@ -108,20 +100,18 @@ class ItemView extends Component {
         <div className="item-view-content">
           <Grid container spacing={0} className="grid">
             <Grid item md={12} lg={4} className="content item-list">
-              {/* ray test touch < */}
               <Grid container spacing={0}>
-                {
-                  this.state.selectedCategory.items.map((item) => (
-                    <ItemViewCard category={this.state.selectedCategory.category} data={item} key={item.id} />
-                  ))
-                }
+                { selectedCategory.items.map(item => (
+                  <ItemViewCard category={selectedCategory.category} data={item} key={item.id} />
+                )) }
               </Grid>
-              {/* ray test touch > */}
             </Grid>
             <Grid item md={12} lg={8} className="content item-display">
               <div>
                 <div className="image-container">
-                  <img src={'../' + viewedItem.imageUrl} alt={viewedItem.title} />
+                  <Link to={`/category/${selectedCategory.category.toLowerCase()}/${viewedItem.id}/zoom`}>
+                    <img src={viewedItem.imageUrl} alt={viewedItem.title} />
+                  </Link>
                   <IconButton className="info-outline" color="inherit" aria-label="Menu">
                     <ErrorOutline />
                   </IconButton>
@@ -131,7 +121,7 @@ class ItemView extends Component {
                   <div className="description">{viewedItem.description}</div>
                   <div className="add-cart">
                     <Select
-                      value={this.state.quantity}
+                      value={quantity}
                       onChange={this.handleQuantityChange}
                       className="selectbox"
                       margin="none"
