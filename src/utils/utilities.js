@@ -14,13 +14,11 @@
 import { products } from './links';
 
 const getCategoryGroupByName = category => {
-  const categoryGroup = products.find(categoryGroup => categoryGroup.category.toLowerCase() === category.toLowerCase());
-  return categoryGroup;
+  return products.find(categoryGroup => categoryGroup.category.toLowerCase() === category.toLowerCase());
 };
 
 const getCategoryGroupById = id => {
-  const categoryGroup = products.find(categoryGroup => categoryGroup.id.toString() === id.toString());
-  return categoryGroup;
+  return products.find(categoryGroup => categoryGroup.id.toString() === id.toString());
 };
 
 const getDetailedProduct = (category, id) => {

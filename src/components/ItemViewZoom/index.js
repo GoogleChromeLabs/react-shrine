@@ -2,7 +2,7 @@
 import React from 'react';
 import Magnifier from 'react-magnifier';
 
-import { getDetailedProduct } from '../../utils/utility';
+import { getDetailedProduct } from '../../utils/utilities';
 
 const ItemViewZoom = ({ match }) => {
   const categoryName = match.params.category;

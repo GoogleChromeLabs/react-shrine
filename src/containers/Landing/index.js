@@ -29,7 +29,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import CategoryView from '../../containers/CategoryView';
 import { products } from '../../utils/links';
-import { getCategoryGroupByName, getCategoryGroupById } from '../../utils/utility';
+import { getCategoryGroupByName, getCategoryGroupById } from '../../utils/utilities';
 import Logo from '../../logo.svg';
 import LogoWithIcon from '../../logo-with-icon.svg';
 import './Landing.css';

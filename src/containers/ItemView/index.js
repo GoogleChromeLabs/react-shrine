@@ -27,7 +27,7 @@ import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
 import ItemViewCard from '../../components/ItemViewCard';
 import AbrilText from '../../components/AbrilText';
-import { getCategoryGroupByName, getDetailedProduct } from '../../utils/utility';
+import { getCategoryGroupByName, getDetailedProduct } from '../../utils/utilities';
 import Logo from '../../logo.svg';
 import LogoWithIcon from '../../logo-with-icon.svg';
 import './ItemView.css';

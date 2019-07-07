@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { getDetailedProduct } from '../../utils/utility';
+import { getDetailedProduct } from '../../utils/utilities';
 
 const ItemViewStatic = ({ match }) => {
   const categoryName = match.params.category;
