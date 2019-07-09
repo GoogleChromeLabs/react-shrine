@@ -1,14 +1,13 @@
 
 import React from 'react';
 
-import { getDetailedProduct } from '../../utils/utilities';
+import ItemViewWrapper from '../../hoc/ItemViewWrapper';
 
-const ItemViewStatic = ({ match }) => {
-  const categoryName = match.params.category;
-  const productId = match.params.id;
-  const detailedProduct = getDetailedProduct(categoryName, productId);
+const ItemViewStatic = ({ product, closeView }) => {
   return (
-    <img src={detailedProduct.imageUrl} width={500} alt="product" />
+    <ItemViewWrapper title={product.title} closed={closeView}>
+      <img src={product.imageUrl} width={500} alt="product" />
+    </ItemViewWrapper>
   );
 };
 

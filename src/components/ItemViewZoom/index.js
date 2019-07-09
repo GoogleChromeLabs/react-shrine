@@ -2,14 +2,13 @@
 import React from 'react';
 import Magnifier from 'react-magnifier';
 
-import { getDetailedProduct } from '../../utils/utilities';
+import ItemViewWrapper from '../../hoc/ItemViewWrapper';
 
-const ItemViewZoom = ({ match }) => {
-  const categoryName = match.params.category;
-  const productId = match.params.id;
-  const detailedProduct = getDetailedProduct(categoryName, productId);
+const ItemViewZoom = ({ product, closeView }) => {
   return (
-    <Magnifier src={detailedProduct.imageUrl} width={500} />
+    <ItemViewWrapper title={product.title} closed={closeView}>
+      <Magnifier src={product.imageUrl} width={500} />
+    </ItemViewWrapper>
   );
 };
 

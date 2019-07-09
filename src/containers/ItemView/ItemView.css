@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
- .item-view-wrapper {
+.item-view-wrapper {
   background-color: #F3F3F3;
   min-height: 100%;
 }
@@ -52,7 +52,8 @@
 }
 
 .item-view-wrapper .item-display .image-container {
-  width: 180px;
+  cursor: pointer;
+  width: 300px;
   position: relative;
   float: left;
   padding: 10px;
@@ -62,7 +63,7 @@
   width: 100%;
 }
 
-.item-view-wrapper .item-display .image-container>.info-outline {
+.item-view-wrapper .item-display .image-container > .info-outline {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -146,7 +147,6 @@
 }
 
 @media screen and (max-width: 400px) {
-
   .item-view-wrapper .item-display .add-cart {
     justify-content: center;
   }

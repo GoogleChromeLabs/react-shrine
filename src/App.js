@@ -19,24 +19,6 @@ import './App.css';
 
 const LazyLanding = lazy(() => import('./containers/Landing'));
 const LazyItemView = lazy(() => import('./containers/ItemView'));
-const LazyAdaptiveItemView = lazy(() => {
-  return new Promise(resolve => {
-    navigator.connection ? resolve(navigator.connection.effectiveType) : resolve(null);
-  }).then(
-    effectiveType => {
-      console.log('[LazyAdaptiveItemView] effectiveType => ', effectiveType);
-      switch(effectiveType) {
-        case '4g':
-        case '3g':
-          return import('./components/ItemViewZoom');
-        case '2g':
-          return import('./components/ItemViewStatic');
-        default:
-          return import('./components/ItemViewStatic')
-      }
-    }
-  );
-});
 
 class App extends Component {
   // when app is mounted for the first time
@@ -60,10 +42,9 @@ class App extends Component {
     return (
       <div className="app-wrapper">
         <Suspense fallback={<div>Loading...</div>}>
-          <Route exact path="/" component={LazyLanding} />
           <Route exact path="/category/:category" component={LazyLanding} />
           <Route exact path="/category/:category/:id" component={LazyItemView} />
-          <Route exact path="/category/:category/:id/zoom" component={LazyAdaptiveItemView} />
+          <Route exact path="/" component={LazyLanding} />
         </Suspense>
       </div>
     );

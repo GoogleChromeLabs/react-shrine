@@ -23,7 +23,7 @@ const getCategoryGroupById = id => {
 
 const getDetailedProduct = (category, id) => {
   const categoryGroup = getCategoryGroupByName(category);
-  const detailedProduct = categoryGroup.items.find(item => item.id.toString() === id);
+  const detailedProduct = categoryGroup.items.find(item => item.id.toString() === id.toString());
   return detailedProduct;
 };
 
