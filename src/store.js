@@ -11,36 +11,36 @@
  * limitations under the License.
  */
 
-import { createStore, applyMiddleware, compose } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
-import rootReducer from './reducers'
+import { createStore, applyMiddleware, compose } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
 
-export const history = createHistory()
+import createRootReducer from './reducers';
 
-const initialState = {}
-const enhancers = []
+export const history = createBrowserHistory();
+
+const initialState = {};
 const middleware = [
   routerMiddleware(history)
-]
+];
 
-if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.devToolsExtension
-
-  if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension())
+const bindMiddleware = middleware => {
+  if(process.env.NODE_ENV !== 'production') {
+    const { composeWithDevTools } = require('redux-devtools-extension');
+    const { createLogger } = require('redux-logger');
+    return composeWithDevTools(
+      compose(
+        applyMiddleware(...middleware, createLogger({collapsed: true}))
+      )
+    );
   }
-}
-
-const composedEnhancers = compose(
-  applyMiddleware(...middleware),
-  ...enhancers
-);
+  return applyMiddleware(...middleware);
+};
 
 const store = createStore(
-  rootReducer,
+  createRootReducer(history),
   initialState,
-  composedEnhancers,
+  compose(bindMiddleware(middleware))
 );
 
 export default store;

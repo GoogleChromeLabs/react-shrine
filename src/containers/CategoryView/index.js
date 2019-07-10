@@ -11,10 +11,10 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
-import FeaturedItem from '../../components/FeaturedItem';
-import Grid from 'material-ui/Grid';
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 
+import FeaturedItem from '../../components/FeaturedItem';
 import CategoryCard from '../../components/CategoryCard';
 import './CategoryView.css';
 
