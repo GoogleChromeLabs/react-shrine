@@ -17,8 +17,8 @@ import quicklink from 'quicklink/dist/quicklink.mjs';
 
 import './App.css';
 
-const LazyLanding = lazy(() => import('./containers/Landing'));
-const LazyItemView = lazy(() => import('./containers/ItemView'));
+const LazyLanding = lazy(() => import(/* webpackChunkName: "landing" */ './containers/Landing'));
+const LazyItemView = lazy(() => import(/* webpackChunkName: "item-view" */ './containers/ItemView'));
 
 class App extends Component {
   // when app is mounted for the first time

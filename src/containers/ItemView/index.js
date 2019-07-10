@@ -40,11 +40,11 @@ const LazyAdaptiveItemView = lazy(() => {
       switch(effectiveType) {
         case '4g':
         case '3g':
-          return import('../../components/ItemViewZoom');
+          return import(/* webpackChunkName: "item-view-zoom" */ '../../components/ItemViewZoom');
         case '2g':
-          return import('../../components/ItemViewStatic');
+          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic');
         default:
-          return import('../../components/ItemViewStatic')
+          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic')
       }
     }
   );
