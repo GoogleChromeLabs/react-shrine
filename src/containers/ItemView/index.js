@@ -44,7 +44,7 @@ const LazyAdaptiveItemView = lazy(() => {
         case '2g':
           return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic');
         default:
-          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic')
+          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic');
       }
     }
   );
