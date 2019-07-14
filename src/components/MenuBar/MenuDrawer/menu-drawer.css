@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.drawer-list {
+  width: 250px;
+}
+
+.drawer-list-item {
+  text-decoration: none;
 }

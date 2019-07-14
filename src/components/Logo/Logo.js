@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './logo.css';
+import logo from '../../assets/images/logo.svg';
+import logoWithIcon from '../../assets/images/logo-with-icon.svg';
+
+const Logo = () => (
+  <div className='logo'>
+    <Link to='/'>
+      <img src={logo} alt='logo' className='small' />
+      <img src={logoWithIcon} alt='logo' className='large' />
+    </Link>
+  </div>
+);
+
+export default Logo;

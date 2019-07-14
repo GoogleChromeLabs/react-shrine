@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+
+import ProductCard from './ProductCard/ProductCard';
+import './product-card-list.css';
+
+const ProductCardList = ({ category }) => (
+  <Grid container className='product-card-list' justify='center'>
+    {category.products.map(product => (
+      <Grid key={product.id} item xs={12} sm={6} md={4}>
+        <ProductCard product={product} categoryName={category.name} />
+      </Grid>
+    ))}
+  </Grid>
+);
+
+export default ProductCardList;

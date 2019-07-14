@@ -1,9 +1,12 @@
-/**
- * Copyright 2018 Google Inc. All Rights Reserved.
+/*
+ * Copyright 2019 Google LLC
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -11,21 +14,24 @@
  * limitations under the License.
  */
 
-import { products } from './links';
+import { categories } from './links';
 
-const getCategoryGroupByName = category => {
-  return products.find(categoryGroup => categoryGroup.category.toLowerCase() === category.toLowerCase());
+const getCategoryByName = name => {
+  if (name) {
+    return categories.find(category => category.name.toLowerCase() === name.toLowerCase());
+  } else {
+    return categories[0];
+  }
 };
 
-const getCategoryGroupById = id => {
-  return products.find(categoryGroup => categoryGroup.id.toString() === id.toString());
+const getCategoryById = id => {
+  return categories.find(category => category.id.toString() === id.toString());
 };
 
 const getDetailedProduct = (category, id) => {
-  const categoryGroup = getCategoryGroupByName(category);
-  const detailedProduct = categoryGroup.items.find(item => item.id.toString() === id.toString());
+  const categoryDetails = getCategoryByName(category);
+  const detailedProduct = categoryDetails.products.find(product => product.id.toString() === id);
   return detailedProduct;
 };
 
-export { getCategoryGroupByName, getCategoryGroupById, getDetailedProduct };
- 
+export { getCategoryByName, getCategoryById, getDetailedProduct };

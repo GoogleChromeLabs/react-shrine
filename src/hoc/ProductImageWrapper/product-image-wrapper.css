@@ -14,9 +14,19 @@
  * limitations under the License.
  */
 
-.landing-screen {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
   width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-icon {
+  cursor: pointer;
 }

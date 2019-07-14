@@ -1,0 +1,81 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* TODO: double check optimization and component level css approach */
+.product-view-wrapper {
+  background-color: #F3F3F3;
+  min-height: 100%;
+}
+
+.product-view-wrapper, .product-view-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.product-view-content .grid {
+  height: 100%;
+}
+
+.product-view-wrapper .content {
+  height: calc(100% - 60px);
+  /* TODO: remove ugly scrollbar on magnified image */
+  /* overflow-y: auto; */
+}
+
+.product-view-wrapper .product-list {
+  background-color: #f3f3f3;
+}
+
+.product-view-wrapper .product-list > div {
+  justify-content: left;
+}
+
+.product-view-wrapper .product-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+.product-view-wrapper .store-description .store-heading {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 13px 0px;
+}
+
+@media screen and (max-width: 1200px) {
+  .product-view-wrapper {
+    overflow: auto;
+    height: auto;
+  }
+
+  .product-view-content {
+    overflow: hidden;
+  }
+
+  .product-view-content .grid {
+    flex-direction: column-reverse;
+  }
+
+  .product-view-wrapper .product-list > div {
+    justify-content: center;
+  }
+
+  .product-view-wrapper .product-display {
+    padding: 40px 0px;
+  }
+}
