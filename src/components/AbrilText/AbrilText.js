@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+
+import './abril-text.css';
+
+const AbrilText = ({ text, className, ...rest }) => (
+  <Typography className={`abril-font ${className}`} {...rest}>
+    {text}
+  </Typography>
+);
+
+export default AbrilText;

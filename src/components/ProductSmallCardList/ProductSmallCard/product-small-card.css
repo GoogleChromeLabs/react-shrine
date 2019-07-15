@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.product-small-card {
+  text-align: center;
+  padding: 20px 10px;
+  margin: 10px;
+}
+
+.product-small-card:hover {
+  transition: all ease 0.5s;
+  box-shadow: 0 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.product-small-card img {
+  width: 80%;
 }

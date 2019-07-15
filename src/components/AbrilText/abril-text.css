@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+/* TODO: check custom font usage in materail ui & p usage does not look professional but required for now */
+p.abril-font {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 2rem;
 }

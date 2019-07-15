@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import React from 'react';
+import Magnifier from 'react-magnifier';
+
+import ProductImageWrapper from '../../../hoc/ProductImageWrapper/ProductImageWrapper';
+
+const ProductZoomImage = ({ product, close }) => (
+  <ProductImageWrapper title={product.title} close={close}>
+    <Magnifier src={product.imageUrl} width={500} />
+  </ProductImageWrapper>
+);
+
+export default ProductZoomImage;

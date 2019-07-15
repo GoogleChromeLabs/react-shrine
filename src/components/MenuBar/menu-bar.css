@@ -14,9 +14,28 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.toolbar {
+  opacity: 0.9;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.menu-button {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+@media screen and (min-width: 600px) {
+  .toolbar {
+    box-shadow: none;
+  }
+
+  .menu-button {
+    margin-left: -12px;
+    margin-right: 20px;
+  }
+  
+  .toolbar .drawer-menu {
+    display: none;
+  }
 }

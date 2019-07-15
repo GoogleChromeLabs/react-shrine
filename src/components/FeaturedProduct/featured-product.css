@@ -1,0 +1,139 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* TODO: double check optimization and component level css approach */
+.featured-product {
+  display: block;
+  background-color: #FFFFFF;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.featured-product .featured-product-price {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #fee0e0;
+  line-height: 50px;
+  font-size: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.featured-product-image-wrapper img {
+  width: 100%;
+}
+
+.featured-product-content {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 40em;
+  max-width: 60%;
+}
+
+.featured-product-content .featured-product-title {
+  margin: 60px 0px;
+  color: #0A3142;
+  font-size: 6em;
+  line-height: 1.1em;
+}
+
+.featured-product-description-wrapper {
+  padding-top: 5px;
+  max-width: 300px;
+  float: right;
+  position: relative;
+}
+
+.featured-product-description-wrapper:before {
+  background-color: #31f0ef;
+  content: '';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: -6px;
+  width: 100px;
+}
+
+.featured-product-description-wrapper .featured-product-description {
+  padding-bottom: 20px;
+  font-size: 14px;
+  font-weight: 300;
+}
+.featured-product-description-wrapper .featured-product-seller {
+  font-size: 11px;
+  line-height: 30px;
+  color: #999;
+}
+.featured-product-description-wrapper .featured-product-seller img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  border: 2px solid #FFFFFF;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1280px) {
+  .featured-product-content .featured-product-title {
+    font-size: 4em;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .featured-product .featured-product-content {
+    position: relative;
+    width: 58%;
+    right: 0;
+  }
+}
+
+
+@media screen and (min-width: 400px) and (max-width: 960px) {
+  .featured-product-content .featured-product-title {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .featured-product {
+    height: auto;
+    padding: 30px 8px;
+  }
+  .featured-product .featured-product-price {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+  }
+  .featured-product-content .featured-product-title {
+    font-size: 2em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .featured-product-description-wrapper:before {
+    height: 3px;
+    top: -3px;
+  }
+  .featured-product-description-wrapper .featured-product-description {
+    font-size: 11px;
+    padding-bottom: 10px;
+  }
+}

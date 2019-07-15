@@ -13,10 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+.add-cart {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #EEEEEE;
+}
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.add-cart .selectbox {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #EEEEEE;
+}
+
+.add-cart .button {
+  margin-left: 15px;
 }

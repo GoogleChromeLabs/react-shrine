@@ -14,9 +14,22 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.logo {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.logo .large {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .logo .large {
+    display: block;
+  }
+  
+  .logo .small {
+    display: none;
+  }
 }

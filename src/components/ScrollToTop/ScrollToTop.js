@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import { useEffect } from 'react';
+import { withRouter } from 'react-router';
+
+const ScrollToTop = ({ location, children }) => {
+  useEffect(() => {
+    return () => {
+      window.scrollTo(0, 0);
+    };
+  }, [location.pathname]);
+
+  return children;
+};
+
+export default withRouter(ScrollToTop);

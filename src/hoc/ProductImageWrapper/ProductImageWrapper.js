@@ -14,9 +14,22 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
-}
+import React from 'react';
+import CloseIcon from '@material-ui/icons/Close';
+
+import AbrilText from '../../components/AbrilText/AbrilText';
+import './product-image-wrapper.css';
+
+const ProductImageWrapper = ({ children, title, close }) => (
+  <div className='wrapper'>
+    <div className='header'>
+      <AbrilText text={title} />
+      <CloseIcon className='close-icon' onClick={close} fontSize='large' />
+    </div>
+    <div>
+      {children}
+    </div>
+  </div>
+);
+
+export default ProductImageWrapper;

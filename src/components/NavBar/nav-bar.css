@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
-.landing-screen {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  background-color: #f3f3f3;
+.nav-bar {
+  display: none;
+  background-color: #FFFFFF;
+}
+
+@media screen and (min-width: 600px) {
+  .nav-bar {
+    display: block;
+  }
 }
