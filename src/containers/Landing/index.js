@@ -11,23 +11,27 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
-import Logo from '../../logo.svg';
-import LogoWithIcon from '../../logo-with-icon.svg';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import ShoppingCart from 'material-ui-icons/ShoppingCart';
-import MoreVertical from 'material-ui-icons/MoreVert';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemText }  from 'material-ui/List';
+import { Link, withRouter } from 'react-router-dom';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Drawer from '@material-ui/core/Drawer';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MoreVertical from '@material-ui/icons/MoreVert';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import CategoryView from '../../containers/CategoryView';
-import landingData from './LandingData';
+import { products } from '../../utils/links';
+import { getCategoryGroupByName, getCategoryGroupById } from '../../utils/utilities';
+import Logo from '../../logo.svg';
+import LogoWithIcon from '../../logo-with-icon.svg';
 import './Landing.css';
 
 const styles = {
@@ -65,47 +69,12 @@ class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: landingData[0],
-      value: landingData[0].id,
-      drawerOpen: false,
+      selectedItem: products[0],
+      value: products[0].id,
+      drawerOpen: false
     }
   }
-
-  findItemByCategory = (category) => {
-    const filteredCategory = landingData.filter((item) => item.category.toLowerCase() === category)
-    return filteredCategory ? filteredCategory[0] : null
-  }
-
-  findItemByValue = (value) => {
-    const item = landingData.filter((item) => item.id === value)[0];
-    return item;
-  }
-
-  setCurrentSelectedItem = (category) => {
-    const selectedCategory = this.findItemByCategory(category);
-    this.setState(() => {
-      return {
-        selectedItem: selectedCategory || landingData[0],
-        value: selectedCategory ? selectedCategory.id : landingData[0].id,
-      }
-    })
-  }
-
-  handleChange = (event, value) => {
-    this.setState((previousState) => {
-      return {
-        value: value,
-        selectedItem: this.findItemByValue(value),
-      }
-    })
-  };
-
-  toggleDrawer = (value) => {
-    if(window.innerWidth < 400) {
-      this.setState({ drawerOpen: value });
-    }
-  }
-
+  
   componentWillReceiveProps(nextProps) {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.setCurrentSelectedItem(nextProps.match.params.category);
@@ -117,6 +86,34 @@ class LandingPage extends Component {
       this.setCurrentSelectedItem(this.props.match.params.category);
     }
   }
+
+  setCurrentSelectedItem = (category) => {
+    const selectedCategory = getCategoryGroupByName(category);
+    this.setState(() => {
+      return {
+        selectedItem: selectedCategory || products[0],
+        value: selectedCategory ? selectedCategory.id : products[0].id,
+      }
+    })
+  };
+
+  handleChange = (event, value) => {
+    const { history } = this.props;
+    const selectedItem = getCategoryGroupById(value);
+    history.push(`/category/${selectedItem.category.toLowerCase()}`);
+    this.setState(previousState => {
+      return {
+        value: value,
+        selectedItem: selectedItem
+      }
+    })
+  };
+
+  toggleDrawer = (value) => {
+    if(window.innerWidth < 400) {
+      this.setState({ drawerOpen: value });
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -144,18 +141,13 @@ class LandingPage extends Component {
           value={value}
           onChange={this.handleChange}
           className={`${classes.flex} ${classes.white} navigation-toolbar`}
-          scrollButtons="auto"
-        >
-          {
-            landingData.map((item) => (
-              <Tab
-                key={item.id}
-                label={item.category}
-                value={item.id}
-                component={(props) => <Link to={`/category/${item.category.toLowerCase()}`} {...props} />}
-              />
-            ))
-          }
+          scrollButtons="auto">
+          { products.map(item => (
+            <Tab
+              key={item.id}
+              label={item.category}
+              value={item.id} />
+          )) }
         </Tabs>
         <Drawer open={this.state.drawerOpen} onClose={() => this.toggleDrawer(false)} className={classes.listBackground}>
           <div
@@ -163,21 +155,17 @@ class LandingPage extends Component {
             role="button"
             className={classes.list}
             onClick={() => this.toggleDrawer(false)}
-            onKeyDown={() => this.toggleDrawer(false)}
-          >
+            onKeyDown={() => this.toggleDrawer(false)}>
             <List>
-              {
-                landingData.map((item, index) => (
+              { products.map((item, index) => (
                   <ListItem
                     button
-                    key={index}
-                  >
+                    key={index}>
                     <Link to={`/category/${item.category.toLowerCase()}`} className={classes.listItemText}>
                       <ListItemText primary={item.category} />
                     </Link>
                   </ListItem>
-                ))
-              }
+              )) }
             </List>
           </div>
         </Drawer>
@@ -191,5 +179,4 @@ LandingPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-export default withStyles(styles)(LandingPage);
+export default withRouter(withStyles(styles)(LandingPage));

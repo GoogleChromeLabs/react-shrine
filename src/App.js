@@ -11,24 +11,44 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import asyncComponent from './components/AsyncComponent';
+import React, { Component, lazy, Suspense } from 'react';
+import { Route, withRouter } from 'react-router-dom';
+import quicklink from 'quicklink/dist/quicklink.mjs';
+
 import './App.css';
 
-const AsyncLanding = asyncComponent(() => import('./containers/Landing'));
-const AsyncItemView = asyncComponent(() => import('./containers/ItemView'));
+const LazyLanding = lazy(() => import(/* webpackChunkName: "landing" */ './containers/Landing'));
+const LazyItemView = lazy(() => import(/* webpackChunkName: "item-view" */ './containers/ItemView'));
 
 class App extends Component {
+  // when app is mounted for the first time
+  componentDidMount() {
+    this.quicklinkHandler();
+  }
+
+  // when app is rerendered after mounted
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.quicklinkHandler();
+    }
+  }
+
+  quicklinkHandler = () => {
+    console.log('[App quicklinkHandler] quicklink call');
+    quicklink();
+  };
+
   render() {
     return (
       <div className="app-wrapper">
-        <Route exact path="/" component={AsyncLanding} />
-        <Route exact path="/category/:category" component={AsyncLanding} />
-        <Route exact path="/category/:category/:id" component={AsyncItemView} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Route exact path="/category/:category" component={LazyLanding} />
+          <Route exact path="/category/:category/:id" component={LazyItemView} />
+          <Route exact path="/" component={LazyLanding} />
+        </Suspense>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

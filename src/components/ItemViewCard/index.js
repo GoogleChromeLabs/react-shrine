@@ -12,17 +12,17 @@
  */
 
 import React from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 import './Card.css';
 
-const ItemViewCard = (props) => (
+const ItemViewCard = ({ category, data }) => (
   <Grid item xs={6} sm={3} lg={6} className="item-view-card-wrapper">
-    <Link to={`/category/${props.category.toLowerCase()}/${props.data.id}`}>
+    <Link to={`/category/${category.toLowerCase()}/${data.id}`}>
       <Paper elevation={0} className="text-center card">
-        <img src={'../' + props.data.imageUrl} alt={props.data.title} />
+        <img src={data.imageUrl} alt={data.title} />
       </Paper>
     </Link>
   </Grid>

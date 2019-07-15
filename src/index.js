@@ -14,16 +14,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import cyan from 'material-ui/colors/cyan';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import cyan from '@material-ui/core/colors/cyan';
+import 'typeface-roboto';
 
 import ScrollToTop from './components/ScrollToTop';
 import store, { history } from './store';
-import 'typeface-roboto';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 
 const theme = createMuiTheme({
   palette: {
@@ -64,10 +65,16 @@ ReactDOM.render((
     <ConnectedRouter history={history}>
       <ScrollToTop>
         <MuiThemeProvider theme={theme}>
-          <App />
+          <Router>
+            <App />
+          </Router>
         </MuiThemeProvider>
       </ScrollToTop>
     </ConnectedRouter>
   </Provider>
 ), document.getElementById('root'));
-registerServiceWorker();
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.register();

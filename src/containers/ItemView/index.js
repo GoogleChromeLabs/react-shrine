@@ -11,81 +11,142 @@
  * limitations under the License.
  */
 
- import React, { Component } from 'react';
-import Logo from '../../logo.svg';
-import LogoWithIcon from '../../logo-with-icon.svg';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import ArrowBack from 'material-ui-icons/ArrowBack';
-import ShoppingCart from 'material-ui-icons/ShoppingCart';
-import MoreVertical from 'material-ui-icons/MoreVert';
-import InfoOutline from 'material-ui-icons/InfoOutline';
-import Grid from 'material-ui/Grid';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
+import React, { Component, lazy, Fragment, Suspense } from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fab from '@material-ui/core/Fab';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MoreVertical from '@material-ui/icons/MoreVert';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
-import landingData from '../../containers/Landing/LandingData';
 import ItemViewCard from '../../components/ItemViewCard';
 import AbrilText from '../../components/AbrilText';
+import { getCategoryGroupByName, getDetailedProduct } from '../../utils/utilities';
+import Logo from '../../logo.svg';
+import LogoWithIcon from '../../logo-with-icon.svg';
 import './ItemView.css';
+
+const LazyAdaptiveItemView = lazy(() => {
+  return new Promise(resolve => {
+    navigator.connection ? resolve(navigator.connection.effectiveType) : resolve(null);
+  }).then(
+    effectiveType => {
+      console.log('[LazyAdaptiveItemView] effectiveType => ', effectiveType);
+      switch(effectiveType) {
+        case '4g':
+        case '3g':
+          return import(/* webpackChunkName: "item-view-zoom" */ '../../components/ItemViewZoom');
+        case '2g':
+          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic');
+        default:
+          return import(/* webpackChunkName: "item-view-static" */ '../../components/ItemViewStatic')
+      }
+    }
+  );
+});
 
 const styles = {
   toolbar: {
     backgroundColor: '#FFFFFF',
-    borderBottom: '1px solid #EEEEEE',
+    borderBottom: '1px solid #EEEEEE'
   },
   logo: {
     flex: 1,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 };
 
 class ItemView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCategory: {},
-      viewedItem: {},
-      quantity: 1,
+  state = {
+    selectedCategory: null,
+    selectedProduct: null,
+    quantity: 1,
+    productViewerOpened: false
+  };
+
+  componentDidMount() {
+    const { match } = this.props;
+    this.setItemDetails(match.params.category, match.params.id);
+  }
+  
+  componentDidUpdate(prevProps) {
+    const { match } = this.props;
+    if (match !== prevProps.match) {
+      this.setItemDetails(match.params.category, match.params.id);
     }
   }
 
-  findItemByCategory = (category) => {
-    return landingData.filter((item) => item.category.toLowerCase() === category)
-  }
-
-  findCurrentViewedItem = (currentCategory, id) => {
-    return currentCategory.items.find((item) => item.id.toString() === id)
-  }
-
   setItemDetails = (category, id) => {
-    const selectedCategory = this.findItemByCategory(category)[0];
-    this.setState((previousState) => {
-      return {
-        selectedCategory: selectedCategory,
-        viewedItem: this.findCurrentViewedItem(selectedCategory, id),
-      }
+    const selectedCategory = getCategoryGroupByName(category);
+    this.setState({
+        selectedCategory,
+        selectedProduct: getDetailedProduct(category, id)
     });
-  }
+  };
 
-  handleQuantityChange = (event) => {
-    this.setState({ quantity: event.target.value})
-  }
+  quantityChangeHandler = event => {
+    this.setState({quantity: event.target.value});
+  };
 
-  componentWillReceiveProps(nextProps) {
-    this.setItemDetails(nextProps.match.params.category, nextProps.match.params.id);
-  }
-
-  componentWillMount() {
-    this.setItemDetails(this.props.match.params.category, this.props.match.params.id);
-  }
+  openCloseProductViewer = opened => {
+    this.setState({productViewerOpened: opened});
+  };
 
   render() {
     const { classes, history } = this.props;
-    const { viewedItem } = this.state;
-    console.log(this.props);
+    const { selectedProduct, selectedCategory, quantity, productViewerOpened } = this.state;
+
+    if (!selectedProduct || !selectedCategory) {
+      return <div>Loading...</div>;
+    }
+
+    const productSummary = (
+      <Fragment>
+        <div onClick={() => this.openCloseProductViewer(true)} className="image-container">
+          <img src={selectedProduct.imageUrl} alt={selectedProduct.title} />
+          <IconButton className="info-outline" color="inherit" aria-label="Menu">
+            <ErrorOutline />
+          </IconButton>
+        </div>
+        <div className="item-details-wrapper">
+          <AbrilText text={selectedProduct.title} className="heading" />
+          <div className="description">{selectedProduct.description}</div>
+          <div className="add-cart">
+            <Select
+              value={quantity}
+              onChange={this.quantityChangeHandler}
+              className="selectbox"
+              margin="none"
+              disableUnderline>
+              <MenuItem value={1}>Quantity 1</MenuItem>
+              <MenuItem value={2}>Quantity 2</MenuItem>
+              <MenuItem value={3}>Quantity 3</MenuItem>
+              <MenuItem value={4}>Quantity 4</MenuItem>
+              <MenuItem value={5}>Quantity 5</MenuItem>
+            </Select>
+            <Fab size="small" color="primary" aria-label="shopping-cart" className="button">
+              <ShoppingCart />
+            </Fab>
+          </div>
+          <div className="store-description">
+            <div className="store-heading">{selectedProduct.storeName}</div>
+            <div className="description">{selectedProduct.storeDescription}</div>
+          </div>
+        </div>
+      </Fragment>
+    );
+    const productViewer = (
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyAdaptiveItemView product={selectedProduct} closeView={() => this.openCloseProductViewer(false)} />
+      </Suspense>
+    );
+    const productDisplay = !productViewerOpened ? productSummary : productViewer;
+
     return (
       <div className="item-view-wrapper">
         <Toolbar className={classes.toolbar}>
@@ -109,48 +170,13 @@ class ItemView extends Component {
           <Grid container spacing={0} className="grid">
             <Grid item md={12} lg={4} className="content item-list">
               <Grid container spacing={0}>
-                {
-                  this.state.selectedCategory.items.map((item) => (
-                    <ItemViewCard category={this.state.selectedCategory.category} data={item} key={item.id} />
-                  ))
-                }
+                { selectedCategory.items.map(item => (
+                  <ItemViewCard category={selectedCategory.category} data={item} key={item.id} />
+                )) }
               </Grid>
             </Grid>
             <Grid item md={12} lg={8} className="content item-display">
-              <div>
-                <div className="image-container">
-                  <img src={'../' + viewedItem.imageUrl} alt={viewedItem.title} />
-                  <IconButton className="info-outline" color="inherit" aria-label="Menu">
-                    <InfoOutline />
-                  </IconButton>
-                </div>
-                <div className="item-details-wrapper">
-                  <AbrilText text={viewedItem.title} className="heading" />
-                  <div className="description">{viewedItem.description}</div>
-                  <div className="add-cart">
-                    <Select
-                      value={this.state.quantity}
-                      onChange={this.handleQuantityChange}
-                      className="selectbox"
-                      margin="none"
-                      disableUnderline
-                    >
-                      <MenuItem value={1}>Quantity 1</MenuItem>
-                      <MenuItem value={2}>Quantity 2</MenuItem>
-                      <MenuItem value={3}>Quantity 3</MenuItem>
-                      <MenuItem value={4}>Quantity 4</MenuItem>
-                      <MenuItem value={5}>Quantity 5</MenuItem>
-                    </Select>
-                    <Button fab mini color="primary" aria-label="add" className="button">
-                      <ShoppingCart />
-                    </Button>
-                  </div>
-                  <div className="store-description">
-                    <div className="store-heading">{viewedItem.storeName}</div>
-                    <div className="description">{viewedItem.storeDescription}</div>
-                  </div>
-                </div>
-              </div>
+              {productDisplay}
             </Grid>
           </Grid>
         </div>
