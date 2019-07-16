@@ -36,9 +36,9 @@ const LazyAdaptiveProductImage = lazy(() => {
   );
 });
 
-const ProductImage = ({ product, close }) => (
+const ProductImage = ({ ...rest }) => (
   <Suspense fallback={<Fragment>Loading...</Fragment>}>
-    <LazyAdaptiveProductImage product={product} close={close} />
+    <LazyAdaptiveProductImage { ...rest } />
   </Suspense>
 );
 
