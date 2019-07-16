@@ -18,10 +18,10 @@ import React from 'react';
 
 import ProductImageWrapper from '../../../hoc/ProductImageWrapper/ProductImageWrapper';
 
-const ProductStaticImage = ({ product, close }) => (
+const ProductPlainImage = ({ product, close }) => (
   <ProductImageWrapper title={product.title} close={close}>
     <img src={product.imageUrl} width={500} alt='product' />
   </ProductImageWrapper>
 );
 
-export default ProductStaticImage;
+export default ProductPlainImage;
