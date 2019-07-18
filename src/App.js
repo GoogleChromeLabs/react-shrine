@@ -20,8 +20,8 @@ import quicklink from 'quicklink/dist/quicklink.mjs';
 
 import './App.css';
 
-const LazyLanding = lazy(() => import('./containers/Landing/Landing'));
-const LazySaleProducts = lazy(() => import('./containers/SaleProducts/SaleProducts'));
+const LazyLanding = lazy(() => import(/* webpackChunkName: "landing" */ './containers/Landing/Landing'));
+const LazySaleProducts = lazy(() => import(/* webpackChunkName: "sale-products" */ './containers/SaleProducts/SaleProducts'));
 
 const App = ({ location }) => {
   useEffect(() => {
