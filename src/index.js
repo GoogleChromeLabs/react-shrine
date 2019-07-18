@@ -29,33 +29,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// TODO: remove theme and use component-level css
 const theme = createMuiTheme({
-  palette: {
-    secondary: cyan,
-  },
   overrides: {
-    MuiDrawer: {
-      paperAnchorLeft: {
-        backgroundColor: '#F3F3F3'
-      }
-    },
     MuiIconButton: {
       label: {
         color: '#7C7C7C'
       }
-    },
-    MuiSelect: {
-      selectMenu: {
-        backgroundColor: 'transparent'
-      }
-    },
-    // ray test touch <
-    MuiTouchRipple: {
-      root: {
-        color: '#31F0EF'
-      }
     }
-    // ray test touch >
   }
 });
 
