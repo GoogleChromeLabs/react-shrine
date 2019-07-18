@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+.product-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .image-container {
+  width: 40%;
   cursor: pointer;
   position: relative;
-  width: 60%;
   padding: 8px;
 }
 
@@ -33,8 +40,7 @@
 }
 
 .product-details-wrapper {
-  width: 100%;
-  padding: 0px 15px;
+  padding: 16px 24px;
 }
 
 .product-details-wrapper .heading {
@@ -51,7 +57,11 @@
   margin: 13px 0px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
+  .product-summary {
+    flex-direction: row;
+  }
+
   .image-container {
     width: 300px;
   }

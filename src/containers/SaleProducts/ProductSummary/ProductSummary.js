@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
@@ -23,7 +23,7 @@ import AbrilText from '../../../components/AbrilText/AbrilText';
 import './product-summary.css';
 
 const ProductSummary = ({ openDetailViewer, product }) => (
-  <Fragment>
+  <div className='product-summary'>
     <div onClick={openDetailViewer} className='image-container'>
       <img src={product.imageUrl} alt={product.title} />
       <IconButton className='info-outline' color='inherit' aria-label='Menu'>
@@ -39,7 +39,7 @@ const ProductSummary = ({ openDetailViewer, product }) => (
         <div className='description'>{product.storeDescription}</div>
       </div>
     </div>
-  </Fragment>
+  </div>
 );
 
 export default ProductSummary;
