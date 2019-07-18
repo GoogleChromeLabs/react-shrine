@@ -31,6 +31,9 @@ import * as serviceWorker from './serviceWorker';
 
 // TODO: remove theme and use component-level css
 const theme = createMuiTheme({
+  palette: {
+    secondary: cyan
+  },
   overrides: {
     MuiIconButton: {
       label: {

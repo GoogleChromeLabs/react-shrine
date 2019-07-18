@@ -42,7 +42,7 @@ const AddCart = () => {
         <MenuItem value={4}>Quantity 4</MenuItem>
         <MenuItem value={5}>Quantity 5</MenuItem>
       </Select>
-      <Fab size='small' color='primary' aria-label='shopping-cart' className='button'>
+      <Fab size='small' color='secondary' aria-label='shopping-cart' className='button'>
         <ShoppingCart />
       </Fab>
     </div>
