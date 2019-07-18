@@ -36,30 +36,26 @@ const theme = createMuiTheme({
   overrides: {
     MuiDrawer: {
       paperAnchorLeft: {
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#F3F3F3'
       }
     },
     MuiIconButton: {
       label: {
-        color: '#7C7C7C',
+        color: '#7C7C7C'
       }
     },
     MuiSelect: {
       selectMenu: {
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
       }
     },
+    // ray test touch <
     MuiTouchRipple: {
       root: {
-        color: '#31F0EF',
-      }
-    },
-    MuiButton: {
-      mini: {
-        backgroundColor: '#31F0EF !important',
-        color: '#7C7C7C'
+        color: '#31F0EF'
       }
     }
+    // ray test touch >
   }
 });
 
