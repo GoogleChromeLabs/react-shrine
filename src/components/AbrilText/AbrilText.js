@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// TODO: improve the modularity in using this component
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
