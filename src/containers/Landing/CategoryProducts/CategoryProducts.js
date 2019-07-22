@@ -14,7 +14,16 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React, { Fragment } from 'react';
+
+import FeaturedProduct from '../../../components/FeaturedProduct/FeaturedProduct';
+import ProductCardList from '../../../components/ProductCardList/ProductCardList';
+
+const CategoryProducts = ({ selected }) => (
+  <Fragment>
+    <FeaturedProduct product={selected.featuredProduct} />
+    <ProductCardList category={selected} />
+  </Fragment>
+);
+
+export default CategoryProducts;

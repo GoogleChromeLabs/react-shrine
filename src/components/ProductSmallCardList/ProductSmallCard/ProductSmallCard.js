@@ -14,7 +14,18 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
+
+import './product-small-card.css';
+
+const ProductSmallCard = ({ category, product }) => (
+  <Link to={`/category/${category.toLowerCase()}/${product.id}`}>
+    <Paper square elevation={0} className='product-small-card'>
+      <img src={product.imageUrl} alt={product.title} />
+    </Paper>
+  </Link>
+);
+
+export default ProductSmallCard;

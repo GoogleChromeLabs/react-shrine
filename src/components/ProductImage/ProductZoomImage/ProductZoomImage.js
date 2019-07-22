@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import Magnifier from 'react-magnifier';
+
+import ProductImageWrapper from '../../../hoc/ProductImageWrapper/ProductImageWrapper';
+
+const ProductZoomImage = ({ product, close }) => (
+  <ProductImageWrapper title={product.title} close={close}>
+    <Magnifier src={product.imageUrl} width={500} />
+  </ProductImageWrapper>
+);
+
+export default ProductZoomImage;

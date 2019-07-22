@@ -14,7 +14,22 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import CloseIcon from '@material-ui/icons/Close';
+
+import AbrilText from '../../components/AbrilText/AbrilText';
+import './product-image-wrapper.css';
+
+const ProductImageWrapper = ({ children, title, close }) => (
+  <div className='wrapper'>
+    <div className='header'>
+      <AbrilText text={title} />
+      <CloseIcon className='close-icon' onClick={close} fontSize='large' />
+    </div>
+    <div>
+      {children}
+    </div>
+  </div>
+);
+
+export default ProductImageWrapper;

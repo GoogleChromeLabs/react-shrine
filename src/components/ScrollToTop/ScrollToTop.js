@@ -14,7 +14,17 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import { useEffect } from 'react';
+import { withRouter } from 'react-router';
+
+const ScrollToTop = ({ location, children }) => {
+  useEffect(() => {
+    return () => {
+      window.scrollTo(0, 0);
+    };
+  }, [location.pathname]);
+
+  return children;
+};
+
+export default withRouter(ScrollToTop);

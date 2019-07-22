@@ -14,7 +14,19 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+
+import ProductSmallCard from './ProductSmallCard/ProductSmallCard';
+
+const ProductSmallCardList = ({ category }) => (
+  <Grid container spacing={0}>
+    { category.products.map(product => (
+      <Grid key={product.id} item xs={6} sm={3} lg={6}>
+        <ProductSmallCard category={category.name} product={product} />
+      </Grid>
+    )) }
+  </Grid>
+);
+
+export default ProductSmallCardList;

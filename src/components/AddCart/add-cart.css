@@ -13,8 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+.add-cart {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #EEEEEE;
+}
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
+.add-cart .selectbox {
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #EEEEEE;
+}
+
+.add-cart .button {
+  color: #7C7C7C;
+  margin-left: 15px;
+}
+
+.add-cart .button:hover {
+  color: #7C7C7C;
 }

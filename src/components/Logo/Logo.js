@@ -14,7 +14,20 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './logo.css';
+import logo from '../../assets/images/logo.svg';
+import logoWithIcon from '../../assets/images/logo-with-icon.svg';
+
+const Logo = () => (
+  <div className='logo'>
+    <Link to='/'>
+      <img src={logo} alt='logo' className='small' />
+      <img src={logoWithIcon} alt='logo' className='large' />
+    </Link>
+  </div>
+);
+
+export default Logo;

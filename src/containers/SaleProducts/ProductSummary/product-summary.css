@@ -1,0 +1,72 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.product-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  width: 40%;
+  cursor: pointer;
+  position: relative;
+  padding: 8px;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.image-container > .info-outline {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: rgba(255, 223, 223, 1);
+}
+
+.product-details-wrapper {
+  padding: 16px 24px;
+}
+
+.product-details-wrapper .heading {
+  font-size: 2.5em;
+  margin: 27px 0px;
+  text-align: center;
+}
+
+.product-view-wrapper .description {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #333;
+  margin: 13px 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .product-summary {
+    flex-direction: row;
+  }
+
+  .image-container {
+    width: 300px;
+  }
+
+  .product-details-wrapper {
+    width: 400px;
+  }
+}

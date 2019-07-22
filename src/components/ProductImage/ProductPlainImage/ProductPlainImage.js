@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+
+import ProductImageWrapper from '../../../hoc/ProductImageWrapper/ProductImageWrapper';
+
+const ProductPlainImage = ({ product, close }) => (
+  <ProductImageWrapper title={product.title} close={close}>
+    <img src={product.imageUrl} width={500} alt='product' />
+  </ProductImageWrapper>
+);
+
+export default ProductPlainImage;

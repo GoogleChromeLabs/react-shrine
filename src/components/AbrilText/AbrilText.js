@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-}
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+
+import './abril-text.css';
+
+const AbrilText = ({ text, className, ...rest }) => (
+  <Typography className={`abril-font ${className}`} {...rest}>
+    {text}
+  </Typography>
+);
+
+export default AbrilText;
