@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rjaponte/next-shop.svg?branch=stable)](https://travis-ci.com/rjaponte/next-shop)
+[![Build Status](https://travis-ci.org/rjaponte/next-shop.svg?branch=stable)](https://travis-ci.org/rjaponte/next-shop)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
