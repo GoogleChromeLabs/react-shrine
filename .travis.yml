@@ -1,3 +1,17 @@
 language: node_js
 node_js:
- - 12
+- 12
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
+  - npm run test
+before_install:
+- openssl aes-256-cbc -K $encrypted_1cfc8d07e3c4_key -iv $encrypted_1cfc8d07e3c4_iv
+  -in client-secret.json.enc -out client-secret.json -d
+deploy:
+  provider: gae
+  keyfile: "client-secret.json"
+  project: "nextshop-267916"
+  on: stable
