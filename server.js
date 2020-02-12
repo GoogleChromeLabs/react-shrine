@@ -1,13 +1,14 @@
 'use strict'
 
 const path = require('path');
-const fastify = require('fastify')();
-const PORT = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-fastify
-    .register(require('fastify-static'), {
-        root: path.join(__dirname, 'build')
-    })
-    .listen(PORT, err => {
-        if(err) throw err;
-    });
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.listen(PORT, () => console.log(`Sample App Listening on port ${PORT}`));
