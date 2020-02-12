@@ -1,4 +1,4 @@
 runtime: nodejs
 env: flex
-manual_scaling:
-  instances: 5
+automatic_scaling:
+  min_num_instances: 1
