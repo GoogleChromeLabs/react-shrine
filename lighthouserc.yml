@@ -4,3 +4,19 @@ ci:
     startServerCommand: npm start
     url:
       - http://localhost:3000/
+  upload:
+    target: temporary-public-storage
+ assert:
+    preset: lighthouse:recommended
+    assertions:
+      offscreen-images: 'off'
+      uses-webp-images: 'off'
+      color-contrast: 'off'
+      first-contentful-paint:
+        - error
+        - maxNumericValue: 2000
+          aggregationMethod: optimistic
+      interactive:
+        - error
+        - maxNumericValue: 5000
+          aggregationMethod: optimistic
