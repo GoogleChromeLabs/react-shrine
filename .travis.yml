@@ -17,6 +17,6 @@ deploy:
   on: stable
   verbosity: debug
 before_install:
-  - openssl aes-256-cbc -K $encrypted_1cfc8d07e3c4_key -iv $encrypted_1cfc8d07e3c4_iv
-  -in client-secret.json.enc -out client-secret.json -d
-  - npm install -g @lhci/cli@0.4.x
+ - openssl aes-256-cbc -K $encrypted_1cfc8d07e3c4_key -iv $encrypted_1cfc8d07e3c4_iv
+ -in client-secret.json.enc -out client-secret.json -d
+ - npm install -g @lhci/cli@0.4.x
