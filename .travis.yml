@@ -12,6 +12,7 @@ script:
   - lhci autorun
 deploy:
   provider: gae
+  skip_cleanup: true
   keyfile: client-secret.json
   project: nextshop-267916
   on: stable
