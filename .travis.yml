@@ -9,6 +9,7 @@ addons:
 script:
   - npm run build
   - npm run test
+  - npm start
   - lhci autorun
 deploy:
   provider: gae
