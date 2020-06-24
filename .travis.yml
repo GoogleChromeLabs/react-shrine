@@ -4,9 +4,12 @@ node_js:
 cache:
   directories:
   - node_modules
+addons:
+  chrome: stable
 script:
 - npm run build
 - npm run test
+- lhci autorun
 deploy:
   provider: gae
   keyfile: client-secret.json
@@ -14,5 +17,6 @@ deploy:
   on: stable
   verbosity: debug
 before_install:
-- openssl aes-256-cbc -K $encrypted_1cfc8d07e3c4_key -iv $encrypted_1cfc8d07e3c4_iv
+  - openssl aes-256-cbc -K $encrypted_1cfc8d07e3c4_key -iv $encrypted_1cfc8d07e3c4_iv
   -in client-secret.json.enc -out client-secret.json -d
+  - npm install -g @lhci/cli@0.4.x
