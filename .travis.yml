@@ -9,7 +9,7 @@ addons:
 script:
   - npm run build
   - npm run test
-  - lhci autorun
+  - lhci autorun --rc-overrides.upload.target=temporary-public-storage
 deploy:
   provider: gae
   skip_cleanup: true
