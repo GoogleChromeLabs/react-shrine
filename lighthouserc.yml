@@ -12,9 +12,29 @@ ci:
       offscreen-images: 'off'
       uses-webp-images: 'off'
       color-contrast: 'off'
+      apple-touch-icon: 'off'
+      uses-text-compression: 'off'
+      uses-responsive-images: 'off'
+      uses-rel-preconnect: 'off'
+      unused-javascript: 'off'
+      robots-txt:
+        - error
+        - minScore: 0
+      maskable-icon:
+        - error
+        - minScore: 0
+      image-size-responsive:
+        - error
+        - minScore: 0
+      font-size:
+        - error
+        - minScore: 0
+      font-display:
+        - error
+        - minScore: 0
       first-contentful-paint:
         - error
-        - maxNumericValue: 2000
+        - maxNumericValue: 3000
           aggregationMethod: optimistic
       interactive:
         - error
