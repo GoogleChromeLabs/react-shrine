@@ -60,11 +60,11 @@
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
     "style-loader": "0.23.1",
-    "terser-webpack-plugin": "1.2.3",
+    "terser-webpack-plugin": "5.3.11",
     "ts-pnp": "1.1.2",
     "typeface-roboto": "0.0.54",
     "url-loader": "1.1.2",
-    "webpack": "4.29.6",
+    "webpack": "5.97.1",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "4.2.0"
